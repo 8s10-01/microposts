@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :check_session, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show]
 
   def show
     @user = User.find(params[:id])
@@ -41,11 +42,20 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation,:country)
   end
-  
+
   def set_user
     @user = User.find(params[:id])
+  end
+  
+  def check_session
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to root_path , notice: '編集と更新を禁止しています'
+    else
+
+    end
   end
   
 end
