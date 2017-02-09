@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :check_session, only: [:edit, :update, :show]
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :check_session, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
