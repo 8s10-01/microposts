@@ -36,4 +36,19 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
+  
+# 自分とフォローしているユーザのつぶやきを取得するメソッド
+  def feed_items
+    Microposts.where(user_id: following_user_ids + [self.id])
+    # following_user_ids:has_many :follwing_users(18行目)で自動的に生成されたメソッド
+    # フォローしているユーザのIDを配列で返す。
+    # 配列同士は、+ で要素を足し合わせることができる。
+    
+    # self.id:selfは、どのユーザがこのコードを実行しようとしているかで変わります。
+    # user1.feed_itemsの場合、self=user1となります。
+    
+    # Microposts:モデル名
+    # .where(user_id: ):select microposts.* from micropost where microposts.user_id = ???
+  end
+  
 end

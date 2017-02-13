@@ -8,6 +8,12 @@ class MicropostsController < ApplicationController
             flash[:success] = "Microposts created!"
             redirect_to root_url
         else
+            @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+                # feed_items(user.rb（モデル）で定義)
+                ## 現在のユーザのフォローしているユーザのマイクロポストを取得
+                # includes(:user) : ユーザ情報をあらかじめ先読み（プリロード）する
+                ## @feed_itemsからアイテムを取り出すたびに、ユーザ情報ををDBから取り出さずに済む
+                # 作成日時が新しいものが上に来るように並び替え
             render 'static_pages/home'
         end
     end
