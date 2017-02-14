@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
 
   private
   def logged_in_user
+    # ログインしていない場合（logged_in?がfalseのとき）のみ処理を行います。
+    # store_locationメソッドで、アクセスしようとしたURLを保存しています。
+    # ログイン画面のURLにリダイレクトします。
     unless logged_in?
       store_location
       flash[:danger] = "Please log in."

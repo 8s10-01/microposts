@@ -1,0 +1,28 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <ul class="nav nav-pills nav-justified">
+      <li role="presentation"><%= link_to "profile", user_path(current_user) %></li>
+      <li role="presentation" class="active"><%= link_to "Following", followings_user_path(current_user) %></li>
+      <li role="presentation"><%= link_to "Follower", followers_user_path(current_user) %></li>
+    </ul>
+    <% if @user.following_users.any? %>
+      <h3>Follower User (<%= @user.following_users.count %>)</h3>
+        <ol class="follow">
+        <% @followings.each do |following| %>
+            <li>
+                <span class="user"><%= following.name %></sapn>
+                <span class="user"><%= following.email %></span>
+            </li>
+        <% end %>
+        </ol>
+    <% end %>
+  </div>
+</div>
