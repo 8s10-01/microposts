@@ -8,6 +8,11 @@
     </section>
   </aside>
   <div class="col-md-8">
+    <ul class="nav nav-pills nav-justified">
+      <li role="presentation" class="active"><%= link_to "profile", user_path(current_user) %></li>
+      <li role="presentation"><%= link_to "Following", followings_user_path(current_user) %></li>
+      <li role="presentation"><%= link_to "Follower", followers_user_path(current_user) %></li>
+    </ul>
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>

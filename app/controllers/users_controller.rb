@@ -55,6 +55,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # ユーザに紐ついたfollowing_usersテーブルを
     # userControllerのインスタンス変数に代入
+    # userControllerのインスタンス変数に代入
     @followings = @user.following_users.all
     
   end

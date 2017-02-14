@@ -8,6 +8,11 @@
     </section>
   </aside>
   <div class="col-md-8">
+    <ul class="nav nav-pills nav-justified">
+      <li role="presentation"><%= link_to "profile", user_path(current_user) %></li>
+      <li role="presentation"><%= link_to "Following", followings_user_path(current_user) %></li>
+      <li role="presentation" class="active"><%= link_to "Follower", followers_user_path(current_user) %></li>
+    </ul>
     <% if @user.follower_users.any? %>
       <h3>Follower User (<%= @user.follower_users.count %>)</h3>
         <ol class="follow">
