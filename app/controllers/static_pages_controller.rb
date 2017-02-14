@@ -12,12 +12,12 @@ class StaticPagesController < ApplicationController
       @micropost = current_user.microposts.build
       # インスタンスをuser_idを紐つけた状態で初期化
       # current_user.microposts.build　は、Micropost.new(User_id: current_user.id) と同じ
-      # current_user.microposts.build
+      # current_user.microposts.build　は、
       # current_userのhas_many :micropostsで生成されるbuildメソッドを利用していて、
       ## 確実にuser_idが紐ついたデータを作成できる。
       
-      @feed_items = current_user.feed_items.include(:user).order(created_at: :desc)
-      # feed_items(user.rb（モデル）で定義)
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+      # feed_items(user.rb（モデル）で定義している)
       ## 現在のユーザのフォローしているユーザのマイクロポストを取得
       # includes(:user) : ユーザ情報をあらかじめ先読み（プリロード）する
       ## @feed_itemsからアイテムを取り出すたびに、ユーザ情報ををDBから取り出さずに済む

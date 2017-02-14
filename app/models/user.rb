@@ -39,8 +39,8 @@ class User < ActiveRecord::Base
   
 # 自分とフォローしているユーザのつぶやきを取得するメソッド
   def feed_items
-    Microposts.where(user_id: following_user_ids + [self.id])
-    # following_user_ids:has_many :follwing_users(18行目)で自動的に生成されたメソッド
+    Micropost.where(user_id: following_user_ids + [self.id])
+    # following_user_ids:has_many :following_users(18行目)で自動的に生成されたメソッド
     # フォローしているユーザのIDを配列で返す。
     # 配列同士は、+ で要素を足し合わせることができる。
     

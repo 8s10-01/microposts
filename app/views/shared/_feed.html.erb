@@ -1,0 +1,8 @@
+<!--タイムライン表示用のパーシャル-->
+
+<% if @feed_items.any? %>　<!-- モデルが空なら、実行-->
+    <ol class="microposts">
+        <%= render @feed_items %>
+    </ol>
+<% end %>
+    
